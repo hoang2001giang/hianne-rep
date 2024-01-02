@@ -4,14 +4,20 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/Home.vue'),
-    name: 'Home'
+    component: () => import('@/layouts/default/Default.vue'),
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/Home.vue'),
+        name: 'Home'
+      },
+      {
+        path: '/hello',
+        component: () => import('@/components/HelloWorld.vue'),
+        name: 'Hello',
+      }
+    ]
   },
-  {
-    path: '/hello',
-    component: () => import('@/components/HelloWorld.vue'),
-    name: 'Hello',
-  }
 ]
 
 const router = createRouter({
