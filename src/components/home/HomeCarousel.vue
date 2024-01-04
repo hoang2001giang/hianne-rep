@@ -1,9 +1,12 @@
 <template>
 	<div>
 		<v-carousel 
-			hide-delimiters 
-			@load="setHeight" 
-			:style="{ height: innerHeight + 'px' }"
+			hide-delimiters
+			cycle
+			height="auto"
+			style="{
+				aspect-ratio: 5/2;
+			}"
 		>
 			<v-carousel-item
 				v-for="item, index in items"
@@ -37,21 +40,9 @@ export default defineComponent({
 			// 	image: getImageUrl('../../assets/img/home/slider1.jpg')
 			// }
 		],
-
-		innerHeight: 500,
 	}),
 
-	methods: {
-		setHeight(event: Event) {
-  			console.log("page is fully loaded");
-			var component = event.target as HTMLElement;
-			console.log(component);
-			this.innerHeight = component.clientWidth * 0.5;
-		}
-	}
+    mounted() {
+    },
 })
 </script>
-
-<style scoped>
-
-</style>

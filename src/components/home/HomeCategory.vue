@@ -1,106 +1,117 @@
 <template>
-	<div>
-		<v-row class="pl-4 pr-4 row">
-			<v-col
-				class="col-md-6 col-sm-6 col-xs-12"
+	<v-slide-group 
+		class="pa-4" 
+		selected-class="bg-success" 
+		show-arrows
+	>
+		<v-slide-group-item
+			v-for="category, index in categories" 
+			:key="index" 
+		>
+			<v-card 
+				width="120"
+				class="text-center rounded-0 my-1 elevation-0"
+				:style="{
+					'border': '1px solid rgba(0,0,0,.05)',
+					'border-left': index == 0 ? '1px solid rgba(0,0,0,.05)' : 'none',
+					// 'background-color': isHovering ? 'red' : 'inherit',
+				}"
 			>
-				<v-card>
-	
-					<v-img
-						src="@/assets/img/home/slider2.jpg"
-						class="white--text align-center"
-						gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-						height="400px"
-					>
-					<h1 class="text-center font-size">Top Picks</h1>
-						<div class="text-center">
-							<v-btn  href="/shop" class="white--text " outlined>SHOP NOW</v-btn>
-						</div>
-					</v-img>
-				</v-card>
-			</v-col>
-			<v-col
-				class="col-md-6 col-sm-6 col-xs-12"
-			>
-				<v-card>
-					<v-img
-						src="@/assets/img/home/slider3.jpg"
-						class="white--text align-center"
-						gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-						height="400px"
-					>
-						<h1 class="text-center font-size">New Arrivals</h1>
-						<div class="text-center">
-							<v-btn  href="/shop" class="white--text" outlined>SHOP NOW</v-btn>
-						</div>
-					</v-img>
-				</v-card>
-			</v-col>
-	  	</v-row>
-	  	<v-row class="pl-4 pr-4 row">
-			<div
-				class="col-md-4 col-sm-4 col-xs-12"
-			>
-				<v-card outlined>
-					<v-img
-						src="@/assets/img/home/deal2.jpg"
-						class="white--text align-center"
-						gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-						height="300px"
-					>
-					<h1 class="text-center font-size">Lorem & Ipsum</h1>
-					<div class="text-center mt-2">
-						<v-btn class="white--text caption"  href="/shop" variant="text">SHOP NOW <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
-					</div>
-					</v-img>
-				</v-card>
-			</div>
-			<div
-				class="col-md-4 col-sm-4 col-xs-12"
-			>
-				<v-card outlined>
-					<v-img
-						src="@/assets/img/home/deal3.jpg"
-						class="white--text align-center"
-						gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-						height="300px"
-					>
-						<h1 class="text-center font-size">Lorem & Ipsum</h1>
-						<div class="text-center mt-2">
-							<v-btn class="white--text caption"  href="/shop" variant="text">SHOP NOW <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
-						</div>
-					</v-img>
-				</v-card>
-			</div>
-			<div
-				class="col-md-4 col-sm-4 col-xs-12"
-			>
-				<v-card outlined>
-					<v-img
-						src="@/assets/img/home/deal4.jpg"
-						class="white--text align-center"
-						gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-						height="300px"
-					>
-						<h1 class="text-center font-size">Lorem & Ipsum</h1>
-						<div class="text-center mt-2">
-							<v-btn class="white--text caption"  href="/shop" variant="text">SHOP NOW <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
-						</div>
-					</v-img>
-				</v-card>
-			</div>
-	  	</v-row>
-	</div>
+				<v-img 
+					:src="category.thumbnail"
+					cover
+					class="card-image"
+				></v-img>
+				<v-card-text 
+					class="card-text"
+				>
+					{{ category.name }}
+				</v-card-text>
+			</v-card>
+		</v-slide-group-item>
+	</v-slide-group>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+
+export const productCategories: { name: string; thumbnail: string, href: string }[] = [
+	{
+		href: '#',
+		name: 'Son',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Mascara',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Phấn mắt',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Phấn má',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Phấn phủ',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Kẻ mắt, chân mày, môi',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Kem nền',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Kem lót',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Kem chống nắng',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	{
+		href: '#',
+		name: 'Kẹp mi',
+		thumbnail: 'src/assets/img/shop/1.jpg',
+	},
+	//   {
+	//     href: '#',
+	//     name: 'Khác',
+	//     thumbnail: '/images/categories/more.svg',
+	//   },
+];
 
 export default defineComponent({
-	
+	data: () => ({
+		categories: productCategories,
+	}),
 })
 </script>
 
 <style scoped>
+.card-image {
+	margin: auto;
+	margin-top: 15%;
+	aspect-ratio: 1;
+	width: 70%;
+  	border-radius: 50%;
+}
 
+.card-text {
+	padding-top: 0.5rem;
+	height: 2.5rem;
+	margin-bottom: 10px;
+}
 </style>
