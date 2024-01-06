@@ -3,7 +3,7 @@
 		fluid
 		class="pa-0 pt-4"
 	>
-		<HomeCarousel v-if="showCarousel"></HomeCarousel>
+		<HomeCarousel v-if="showCarousel" class="mb-7"></HomeCarousel>
 		<HomeCategory></HomeCategory>
 		<ProductSuggest></ProductSuggest>
 	  

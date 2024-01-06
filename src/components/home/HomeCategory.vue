@@ -1,39 +1,77 @@
 <template>
-	<v-slide-group 
-		class="pa-4" 
-		selected-class="bg-success" 
-		show-arrows
-	>
-		<v-slide-group-item
-			v-for="category, index in categories" 
-			:key="index" 
+	<v-container>
+		<div class="text-h4">Categories</div>
+
+		<v-tabs
+			align-tabs="start"
+			v-model="tab"
 		>
-			<v-card 
-				width="120"
-				class="text-center rounded-0 my-1 elevation-0"
-				:style="{
-					'border': '1px solid rgba(0,0,0,.05)',
-					'border-left': index == 0 ? '1px solid rgba(0,0,0,.05)' : 'none',
-					// 'background-color': isHovering ? 'red' : 'inherit',
-				}"
+			<v-tab
+				v-for="category, i in categories"
+				:key="i"
+				:value="i+1"
+			>{{ category.name }}</v-tab>
+		</v-tabs>
+		<v-window v-model="tab">
+			<v-window-item
+				v-for="n in 3"
+				:key="n"
+				:value="n"
 			>
-				<v-img 
-					:src="category.thumbnail"
-					cover
-					class="card-image"
-				></v-img>
-				<v-card-text 
-					class="card-text"
+				<v-container fluid>
+					<v-row>
+						<v-col
+							v-for="i in 6"
+							:key="i"
+							cols="12"
+							md="4"
+						>
+							<product-card></product-card>
+						</v-col>
+					</v-row>
+				</v-container>
+			</v-window-item>
+		</v-window>
+		<div class="text-center mt-4">
+			<v-btn append-icon="$next">See more</v-btn>
+		</div>
+		<!-- <v-slide-group 
+			class="pa-4" 
+			selected-class="bg-success" 
+			show-arrows
+		>
+			<v-slide-group-item
+				v-for="category, index in categories" 
+				:key="index" 
+			>
+				<v-card 
+					width="120"
+					class="text-center rounded-0 my-1 elevation-0"
+					:style="{
+						'border': '1px solid rgba(0,0,0,.05)',
+						'border-left': index == 0 ? '1px solid rgba(0,0,0,.05)' : 'none',
+						// 'background-color': isHovering ? 'red' : 'inherit',
+					}"
 				>
-					{{ category.name }}
-				</v-card-text>
-			</v-card>
-		</v-slide-group-item>
-	</v-slide-group>
+					<v-img 
+						:src="category.thumbnail"
+						cover
+						class="card-image"
+					></v-img>
+					<v-card-text 
+						class="card-text"
+					>
+						{{ category.name }}
+					</v-card-text>
+				</v-card>
+			</v-slide-group-item>
+		</v-slide-group> -->
+	</v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ProductCard from '../ProductCard.vue';
 
 export const productCategories: { name: string; thumbnail: string, href: string }[] = [
 	{
@@ -96,7 +134,12 @@ export const productCategories: { name: string; thumbnail: string, href: string 
 export default defineComponent({
 	data: () => ({
 		categories: productCategories,
+      	tab: null,
 	}),
+
+	components: {
+		ProductCard,
+	}
 })
 </script>
 
