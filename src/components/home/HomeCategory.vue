@@ -21,10 +21,9 @@
 				<v-container fluid>
 					<v-row>
 						<v-col
-							v-for="i in 6"
+							v-for="i in 9"
 							:key="i"
-							cols="12"
-							md="4"
+							class="custom5cols"
 						>
 							<product-card></product-card>
 						</v-col>
@@ -35,43 +34,14 @@
 		<div class="text-center mt-4">
 			<v-btn append-icon="$next">See more</v-btn>
 		</div>
-		<!-- <v-slide-group 
-			class="pa-4" 
-			selected-class="bg-success" 
-			show-arrows
-		>
-			<v-slide-group-item
-				v-for="category, index in categories" 
-				:key="index" 
-			>
-				<v-card 
-					width="120"
-					class="text-center rounded-0 my-1 elevation-0"
-					:style="{
-						'border': '1px solid rgba(0,0,0,.05)',
-						'border-left': index == 0 ? '1px solid rgba(0,0,0,.05)' : 'none',
-						// 'background-color': isHovering ? 'red' : 'inherit',
-					}"
-				>
-					<v-img 
-						:src="category.thumbnail"
-						cover
-						class="card-image"
-					></v-img>
-					<v-card-text 
-						class="card-text"
-					>
-						{{ category.name }}
-					</v-card-text>
-				</v-card>
-			</v-slide-group-item>
-		</v-slide-group> -->
 	</v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ProductCard from '../ProductCard.vue';
+import { Category } from '@/interfaces/category';
+import { categoryService } from '@/services/category-service';
 
 export const productCategories: { name: string; thumbnail: string, href: string }[] = [
 	{
@@ -124,18 +94,17 @@ export const productCategories: { name: string; thumbnail: string, href: string 
 		name: 'Kẹp mi',
 		thumbnail: 'src/assets/img/shop/1.jpg',
 	},
-	//   {
-	//     href: '#',
-	//     name: 'Khác',
-	//     thumbnail: '/images/categories/more.svg',
-	//   },
 ];
 
 export default defineComponent({
 	data: () => ({
-		categories: productCategories,
+		categories: [] as Category[],
       	tab: null,
 	}),
+
+	async created() {
+		this.categories = await categoryService.fetchCategories();
+	},
 
 	components: {
 		ProductCard,

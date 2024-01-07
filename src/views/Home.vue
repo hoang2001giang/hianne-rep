@@ -4,48 +4,43 @@
 		class="pa-0 pt-4"
 	>
 		<HomeCarousel v-if="showCarousel" class="mb-7"></HomeCarousel>
-		<HomeCategory></HomeCategory>
+		<v-container>
+			<div class="text-h4">Hot</div>
+			<v-container fluid>
+				<v-row>
+					<v-col
+						v-for="i in 3"
+						:key="i"
+						class="custom5cols"
+					>
+						<product-card></product-card>
+					</v-col>
+				</v-row>
+			</v-container>
+			<div class="text-center mt-4">
+				<v-btn append-icon="$next">See more</v-btn>
+			</div>
+		</v-container>
+		<v-container class="pt-10">
+			<div class="text-h4">New Arrivals</div>
+			<v-container fluid>
+				<v-row>
+					<v-col
+						v-for="i in 3"
+						:key="i"
+						class="custom5cols"
+					>
+						<product-card></product-card>
+					</v-col>
+				</v-row>
+			</v-container>
+			<div class="text-center mt-4">
+				<v-btn append-icon="$next">See more</v-btn>
+			</div>
+		</v-container>
+		<HomeCategory class="pt-10"></HomeCategory>
 		<ProductSuggest></ProductSuggest>
 	  
-	  <!-- <v-card  class="accent" >
-		<v-container>
-		  <v-row no-gutters>
-			<v-col class="col-12 col-md-4 col-sm-12">
-			  <v-row >
-				<v-col class="col-12 col-sm-3 pr-4" align="right">
-				  <v-icon class="display-2">mdi-truck</v-icon>
-				</v-col>
-				<v-col class="col-12 col-sm-9 pr-4">
-				  <h3 class="font-weight-light">FREE SHIPPING & RETURN</h3>
-								<p class="font-weight-thin">Free Shipping over $300</p>
-				</v-col>
-			  </v-row>
-			</v-col>
-			<v-col class="col-12 col-md-4 col-sm-12">
-			  <v-row >
-				<v-col class="col-12 col-sm-3 pr-4" align="right">
-				  <v-icon class="display-2">mdi-cash-usd</v-icon>
-				</v-col>
-				<v-col  class="col-12 col-sm-9 pr-4">
-				  <h3 class="font-weight-light">MONEY BACK GUARANTEE</h3>
-				  <p class="font-weight-thin">30 Days Money Back Guarantee</p>
-				</v-col>
-			  </v-row>
-			</v-col>
-			<v-col class="col-12 col-md-4 col-sm-12">
-			  <v-row>
-				<v-col class="col-12 col-sm-3 pr-4" align="right">
-				  <v-icon class="display-2">mdi-headset</v-icon>
-				</v-col>
-				<v-col  class="col-12 col-sm-9 pr-4">
-				  <h3 class="font-weight-light">020-800-456-747</h3>
-				  <p class="font-weight-thin">24/7 Available Support</p>
-				</v-col>
-			  </v-row>
-			</v-col>
-		  </v-row>
-		</v-container>
-	  </v-card> -->
 	</v-container>
 </template>
   
@@ -56,10 +51,11 @@ import HomeCarousel from '@/components/home/HomeCarousel.vue';
 import HomeCategory from '@/components/home/HomeCategory.vue';
 import ProductSuggest from '@/components/home/ProductSuggest.vue';
 import {categoryService} from '@/services/category-service';
+import ProductCard from '@/components/ProductCard.vue';
 
 export default defineComponent ({
 	components: {
-		HomeCarousel, HomeCategory, ProductSuggest
+		HomeCarousel, HomeCategory, ProductSuggest, ProductCard
 	},
 
 	data: () => ({
@@ -71,4 +67,12 @@ export default defineComponent ({
 		this.categories = await categoryService.fetchCategories();
 	},
 });
-</script>  
+</script>
+
+<style>
+.custom5cols {
+	width: 20%;
+	max-width: 20%;
+	flex-basis: 20%;
+}
+</style>

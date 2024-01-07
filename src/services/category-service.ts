@@ -8,7 +8,6 @@ class CategoryProvider {
 
 	async fetchCategories() {
 		const categories: Category[] = await fetch(this.ApiEnpoint).then(res => res.json());
-		console.log(categories);
 		return categories;
 	}
 
